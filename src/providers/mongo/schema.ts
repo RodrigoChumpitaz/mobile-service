@@ -6,13 +6,13 @@ mongoose.plugin((schema) => {
     schema.set('versionKey', false);
 })
 
-const schema = new Schema<IUserDb>({
+const userSchema = new Schema<IUserDb>({
     name: { type: String },
     email: { type: String, required: true },
     password: { type: String, required: true },
     role: { type: String, default: UserRole.USER },
 })
 
-const UserModel = mongoose.model<IUserDb>('User', schema, 'users');
+const UserModel = mongoose.model<IUserDb>('User', userSchema, 'users');
 
 export { UserModel };

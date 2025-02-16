@@ -4,6 +4,7 @@ import cors from 'cors';
 import userService from './service/user.service';
 import { connection } from 'mongoose';
 import { response } from './utils';
+import newService from './service/new.service';
 
 const app = express();
 
@@ -18,18 +19,18 @@ app.use(
 );
 
 app.get('/', (req: Request, res: Response) => {
-  const db = connection.readyState === 1 ? 'connected' : 'disconnected';
+  const database = connection.readyState === 1 ? 'connected' : 'disconnected';
   return response(
     res,
     {
       message: 'Welcome to the API',
       status: 'success',
-      database: db
+      database
     },
     200
   );
 });
 app.use('/favicon.ico', (req: Request, res: Response) => res.status(204).end() as any);
-app.use('/api/v1', userService);
+app.use('/api/v1', userService, newService);
 
 export default app;

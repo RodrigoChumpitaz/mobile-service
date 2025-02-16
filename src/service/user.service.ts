@@ -13,6 +13,8 @@ class UserService {
 
     routes() {
         this.router.post('/users', this.controller.createUser);
+        this.router.get('/users/:id', this.controller.getUserById);
+        this.router.post('/users/signin', this.controller.signIn);
     }
 }
 

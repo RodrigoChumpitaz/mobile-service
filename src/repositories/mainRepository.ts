@@ -20,4 +20,6 @@ export abstract class MainRepository<T> implements IRepository<T> {
     abstract update(id: string, data: Partial<T>): Promise<T | null>;
     abstract delete(id: string): Promise<void>;
     abstract findAll(query?: Record<string, any>): Promise<T[]>;
+    abstract signIn(data: { email: string, password: string }): Promise<any>;
+    abstract getByFilter(filter: Record<string, any>): Promise<T | null>;
 }
